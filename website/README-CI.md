@@ -25,3 +25,24 @@
 - run the commands docker build -t my-website . to build website
 - run the command  docker run --name some-nginx -d -p 8080:32768 my-website
 - http://localhost:8080/ should be the location of website
+
+# How to create public repo
+
+- on docker hub website you can hit create repository
+- set to public
+
+# Aunthenticate
+- use the docker login command in your local terminal
+- to push a container use docker push command and tag with username and docker image name
+
+
+# Secrets
+- in github settings of repo select 'secrets'
+- click 'new repository secret' and name both secrets DOCKER_USERNAME and DOCKER_PASSWORD
+
+# GitHub Workflow
+- defined in docker-build.yml
+- logs into dockerhub using the DOCKER_USERNAME and DOCKER_PASSWORD
+- pushes the image to the docker hub with the tag 'latest'. then pushed to the main branch
+
+
