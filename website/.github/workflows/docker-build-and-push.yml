@@ -10,11 +10,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - name: Build and push Docker image
+        id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: tjwells101/tjwellsimage:latest
-          username: ${{ env.DOCKER_USERNAME }}
-          password: ${{ env.DOCKER_PASSWORD }}
+          tags: |
+            tjwells101/my-website:${{ github.ref }}
+            tjwells101/my-website:latest
+      - name: Extract metadata and push Docker image
+        uses: docker/metadata-action@v3
+        with:
+          images: tjwells101/my-website:latest
+          tags: |
+            ${{ steps.docker_build.outputs.digest }}
+            ${{ github.ref }}
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled
+          DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_SERVER: https://notary.docker.io
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ secrets.DCT_REPOSITORY_PASSPHRASE }}
+          DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE: ${{ secrets.DCT_ROOT_PASSPHRASE }}
