@@ -1,0 +1,32 @@
+[
+    {
+      "id": "restart_container",
+      "execute-command": "/home/ubuntu/deployment/restart_container.sh",
+      "response-message": "Restarting container...",
+      "include-command-output-in-response": true,
+      "command-working-directory": "/home/ubuntu/deployment",
+      "trigger-rule": {
+        "and": [
+          {
+            "match": {
+              "type": "value",
+              "value": "push"
+            }
+          },
+          {
+            "match": {
+              "type": "value",
+              "value": "refs/heads/main"
+            }
+          },
+          {
+            "match": {
+              "type": "value",
+              "value": "refs/tags/*"
+            }
+          }
+        ]
+      }
+    }
+  ]
+  
