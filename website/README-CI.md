@@ -46,3 +46,24 @@
 - pushes the image to the docker hub with the tag 'latest'. then pushed to the main branch
 
 
+# Continuous Deployment Setup
+- This project uses a continuous deployment (CD) setup to automate the process of building, testing, and deploying changes to a running application.
+
+# Installing Docker on the Instance
+- Install docker on your EC2 Instance
+- Ubuntu: https://docs.docker.com/engine/install/ubuntu/
+
+# Container Restart
+- Included in the deployment folder of this project is a shell script restart-container.sh that pulls the latest version of the Docker image from DockerHub and restarts the container. 
+
+# Webhook Setup
+- Follow instructions on adnanh's webhook (https://github.com/adnanh/webhook) to set up the webhook 
+
+# Webhook task definition file
+- create a new file named webhook.json in the /etc/webhook/ directory...create a script that defines a webhook that will execute the restart_container.sh script located in the /home/ubuntu/deployment/ directory when a request is received. 
+
+# Configure GitHub or DockerHub to message the webhook0
+
+- For GitHub, we can go to the repository settings, click on "Webhooks", and then click on "Add webhook". We need to enter the URL of the webhook listener, which should be in the form http://<INSTANCE_IP>:9000/hooks/<WEBHOOK_ID>, where <INSTANCE_IP> is the public IP address of the instance and <WEBHOOK_ID> is the ID of the webhook defined in the webhook.json file.
+
+- For DockerHub, we can go to the repository settings, click on "Webhooks", and then click on "Create webhook". We need to enter the URL of the webhook listener, which should be in the form http://<INSTANCE_IP>:9000/hooks/<WEBHOOK_ID>, where <INSTANCE_IP> is the public IP address of the instance and <WEBHOOK_ID> is the ID of the webhook defined in the webhook.json file.
