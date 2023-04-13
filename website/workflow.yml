@@ -29,6 +29,6 @@ jobs:
           context: .
           push: true
           tags: |
-            tjwells023/my-website:${{ github.ref }}
-            tjwells023/my-website:${{ github.ref }}
-            tjwells023/my-website:latest
+            tjwells023/tjwellsdocker:${{ github.ref }}
+            tjwells023/tjwellsdocker:${{ github.ref }}
+            tjwells023/tjwellsdocker:latest
