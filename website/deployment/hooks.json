@@ -1,10 +1,10 @@
 [
     {
       "id": "restart_container",
-      "execute-command": "/home/ubuntu/deployment/restart_container.sh",
+      "execute-command": "C:/Users/Tyler Wells/Desktop/Project4/3120-cicd-tjwells23/website/deployment/restart_container.sh",
       "response-message": "Restarting container...",
       "include-command-output-in-response": true,
-      "command-working-directory": "/home/ubuntu/deployment",
+      "command-working-directory": "C:/Users/Tyler Wells/Desktop/Project4/3120-cicd-tjwells23/website/deployment",
       "trigger-rule": {
         "and": [
           {

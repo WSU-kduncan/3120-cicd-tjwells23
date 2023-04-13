@@ -19,12 +19,12 @@ jobs:
           context: 
           push: true
           tags: |
-            tjwells101/my-website:${{ github.ref }}
-            tjwells101/my-website:latest
+            tjwells023/tjwellsdocker:${{ github.ref }}
+            tjwells023/tjwellsdocker:latest
       - name: Extract metadata and push Docker image
         uses: docker/metadata-action@v3
         with:
-          images: tjwells101/my-website:latest
+          images: tjwells023/tjwellsdocker:latest
           tags: |
             ${{ steps.docker_build.outputs.digest }}
             ${{ github.ref }}
