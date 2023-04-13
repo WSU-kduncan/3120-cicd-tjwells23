@@ -16,7 +16,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: 
           push: true
           tags: |
             tjwells101/my-website:${{ github.ref }}
